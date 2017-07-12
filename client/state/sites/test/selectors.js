@@ -828,7 +828,7 @@ describe( 'selectors', () => {
 				}
 			}, 77203199, 'example_option' );
 
-			expect( siteOption ).to.be.undefined;
+			expect( siteOption ).to.be.null;
 		} );
 
 		it( 'should return the option value if the option is known for that site', () => {
