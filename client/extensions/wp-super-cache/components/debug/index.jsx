@@ -32,10 +32,6 @@ class DebugTab extends Component {
 
 	deleteLog = () => this.props.saveSettings( this.props.siteId, { wpsc_delete_log: true } );
 
-	disableLog = () => this.props.saveSettings( this.props.siteId, { wpsc_disable_log: true } );
-
-	resetLog = () => this.props.saveSettings( this.props.siteId, { wpsc_reset_log: true } );
-
 	render() {
 		const {
 			fields: {
@@ -75,25 +71,9 @@ class DebugTab extends Component {
 								compact
 								primary
 								disabled={ isRequesting || isSaving }
-								onClick={ this.resetLog }
-								value="1">
-								{ translate( 'Reset Debug Log' ) }
-							</Button>
-							<Button
-								compact
-								primary
-								disabled={ isRequesting || isSaving }
-								onClick={ this.disableLog }
-								value="1">
-								{ translate( 'Disable Debug Log' ) }
-							</Button>
-							<Button
-								compact
-								primary
-								disabled={ isRequesting || isSaving }
 								onClick={ this.deleteLog }
 								value="1">
-								{ translate( 'Disable and Delete Debug Log' ) }
+								{ translate( 'Delete Debug Log' ) }
 							</Button>
 						</FormFieldset>
 						<p>
