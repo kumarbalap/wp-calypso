@@ -56,47 +56,9 @@ class DebugTab extends Component {
 
 		const cacheFilename = wp_cache_debug_log.split( '/' ).pop();
 		const debugLogLocation = cache_path + cacheFilename;
-		const DebugLogLink = <ExternalLink
-			href={ wp_cache_debug_log }
-			target="_blank" />;
-		const translateArgs = {
-			args: { debugLogLocation },
-			components: { DebugLogLink }
-		};
 
 		return (
 			<div>
-				<Card>
-					<p>
-						{ translate(
-							'Fix problems with the plugin by debugging it here. ' +
-							'It can log them to a file in your cache directory.'
-						) }
-					</p>
-					<FormFieldset>
-						<Button
-							compact
-							primary
-							disabled={ isRequesting || isSaving }
-							onClick={ this.deleteLog }
-							value="1">
-							{ translate( 'Delete Debug Log' ) }
-						</Button>
-					</FormFieldset>
-					<p>
-						{ wp_super_cache_debug
-							? translate( 'Currently logging to: {{DebugLogLink}}%(debugLogLocation)s{{/DebugLogLink}}', translateArgs )
-							: translate( 'Last logged to: {{DebugLogLink}}%(debugLogLocation)s{{/DebugLogLink}}', translateArgs )
-						}
-					</p>
-					<p>
-						{ translate(
-							'Username and Password: %(username)s',
-							{ args: { username: wp_cache_debug_username } }
-						) }
-					</p>
-				</Card>
-
 				<form>
 					<SectionHeader label={ translate( 'Debug' ) }>
 						<FormButton
@@ -116,6 +78,41 @@ class DebugTab extends Component {
 							</FormToggle>
 						</FormFieldset>
 						<div className="wp-super-cache__debug-fieldsets">
+							<table>
+								<tr>
+									<td>
+										{ wp_super_cache_debug
+											? translate( 'Currently logging to:' )
+											: translate( 'Last logged to:' )
+										}
+									</td>
+									<td>
+										<ExternalLink
+											href={ wp_cache_debug_log }
+											target="_blank">
+											{ debugLogLocation }
+										</ExternalLink>
+									</td>
+									<td rowSpan="2">
+										<Button
+											compact
+											disabled={ isRequesting || isSaving }
+											onClick={ this.deleteLog }
+											scary
+											value="1">
+											{ translate( 'Delete' ) }
+										</Button>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										{ translate( 'Username and Password:' ) }
+									</td>
+									<td>
+										{ wp_cache_debug_username }
+									</td>
+								</tr>
+							</table>
 							<FormFieldset>
 								<FormLabel htmlFor="ipAddress">
 									{ translate( 'IP Address' ) }
