@@ -76,41 +76,43 @@ class DebugTab extends Component {
 							</FormToggle>
 						</FormFieldset>
 						<div className="wp-super-cache__debug-fieldsets">
-							<table>
-								<tr>
-									<td>
-										{ wp_super_cache_debug
-											? translate( 'Currently logging to:' )
-											: translate( 'Last logged to:' )
-										}
-									</td>
-									<td>
-										<ExternalLink
-											href={ cache_path_url + wp_cache_debug_log }
-											target="_blank">
-											{ cache_path + wp_cache_debug_log }
-										</ExternalLink>
-									</td>
-									<td rowSpan="2">
-										<Button
-											compact
-											disabled={ isRequesting || isSaving }
-											onClick={ this.deleteLog }
-											scary
-											value="1">
-											{ translate( 'Delete' ) }
-										</Button>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										{ translate( 'Username and Password:' ) }
-									</td>
-									<td>
-										{ wp_cache_debug_username }
-									</td>
-								</tr>
-							</table>
+							{ wp_cache_debug_log &&
+								<table>
+									<tr>
+										<td>
+											{ wp_super_cache_debug
+												? translate( 'Currently logging to:' )
+												: translate( 'Last logged to:' )
+											}
+										</td>
+										<td>
+											<ExternalLink
+												href={ cache_path_url + wp_cache_debug_log }
+												target="_blank">
+												{ cache_path + wp_cache_debug_log }
+											</ExternalLink>
+										</td>
+										<td rowSpan="2">
+											<Button
+												compact
+												disabled={ isRequesting || isSaving }
+												onClick={ this.deleteLog }
+												scary
+												value="1">
+												{ translate( 'Delete' ) }
+											</Button>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											{ translate( 'Username and Password:' ) }
+										</td>
+										<td>
+											{ wp_cache_debug_username }
+										</td>
+									</tr>
+								</table>
+							}
 							<FormFieldset>
 								<FormLabel htmlFor="ipAddress">
 									{ translate( 'IP Address' ) }
