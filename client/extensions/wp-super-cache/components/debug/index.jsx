@@ -36,6 +36,7 @@ class DebugTab extends Component {
 		const {
 			fields: {
 				cache_path,
+				cache_path_url,
 				wp_cache_debug_ip,
 				wp_cache_debug_log = '',
 				wp_super_cache_comments,
@@ -53,9 +54,6 @@ class DebugTab extends Component {
 			isSaving,
 			translate,
 		} = this.props;
-
-		const cacheFilename = wp_cache_debug_log.split( '/' ).pop();
-		const debugLogLocation = cache_path + cacheFilename;
 
 		return (
 			<div>
@@ -88,9 +86,9 @@ class DebugTab extends Component {
 									</td>
 									<td>
 										<ExternalLink
-											href={ wp_cache_debug_log }
+											href={ cache_path_url + wp_cache_debug_log }
 											target="_blank">
-											{ debugLogLocation }
+											{ cache_path + wp_cache_debug_log }
 										</ExternalLink>
 									</td>
 									<td rowSpan="2">
@@ -218,6 +216,7 @@ class DebugTab extends Component {
 const getFormSettings = settings => {
 	return pick( settings, [
 		'cache_path',
+		'cache_path_url',
 		'wp_cache_debug_ip',
 		'wp_cache_debug_log',
 		'wp_super_cache_comments',
