@@ -55,48 +55,48 @@ class DebugTab extends Component {
 		} = this.props;
 
 		const cacheFilename = wp_cache_debug_log.split( '/' ).pop();
+		const debugLogLocation = cache_path + cacheFilename;
+		const DebugLogLink = <ExternalLink
+			href={ wp_cache_debug_log }
+			target="_blank" />;
+		const translateArgs = {
+			args: { debugLogLocation },
+			components: { DebugLogLink }
+		};
 
 		return (
 			<div>
-				{ !! wp_super_cache_debug &&
-					<Card>
-						<p>
-							{ translate(
-								'Fix problems with the plugin by debugging it here. ' +
-								'It can log them to a file in your cache directory.'
-							) }
-						</p>
-						<FormFieldset>
-							<Button
-								compact
-								primary
-								disabled={ isRequesting || isSaving }
-								onClick={ this.deleteLog }
-								value="1">
-								{ translate( 'Delete Debug Log' ) }
-							</Button>
-						</FormFieldset>
-						<p>
-							{ translate(
-								'Currently logging to: {{ExternalLink}}%(location)s{{/ExternalLink}}',
-								{
-									args: { location: cache_path + cacheFilename },
-									components: {
-										ExternalLink: <ExternalLink
-											href={ wp_cache_debug_log }
-											target="_blank" />
-									}
-								}
-							) }
-						</p>
-						<p>
-							{ translate(
-								'Username and Password: %(username)s',
-								{ args: { username: wp_cache_debug_username } }
-							) }
-						</p>
-					</Card>
-				}
+				<Card>
+					<p>
+						{ translate(
+							'Fix problems with the plugin by debugging it here. ' +
+							'It can log them to a file in your cache directory.'
+						) }
+					</p>
+					<FormFieldset>
+						<Button
+							compact
+							primary
+							disabled={ isRequesting || isSaving }
+							onClick={ this.deleteLog }
+							value="1">
+							{ translate( 'Delete Debug Log' ) }
+						</Button>
+					</FormFieldset>
+					<p>
+						{ wp_super_cache_debug
+							? translate( 'Currently logging to: {{DebugLogLink}}%(debugLogLocation)s{{/DebugLogLink}}', translateArgs )
+							: translate( 'Last logged to: {{DebugLogLink}}%(debugLogLocation)s{{/DebugLogLink}}', translateArgs )
+						}
+					</p>
+					<p>
+						{ translate(
+							'Username and Password: %(username)s',
+							{ args: { username: wp_cache_debug_username } }
+						) }
+					</p>
+				</Card>
+
 				<form>
 					<SectionHeader label={ translate( 'Debug' ) }>
 						<FormButton
