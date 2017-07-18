@@ -333,6 +333,7 @@ const Post = React.createClass( {
 				{ this.state.showComments &&
 					<Comments
 						showCommentCount={ false }
+						commentCount = { this.props.post.discussion.comment_count }
 						post={ this.props.post }
 						showFilters={ isEnabled( 'comments/filters-in-posts' ) }
 						showModerationTools={ isEnabled( 'comments/moderation-tools-in-posts' ) }
