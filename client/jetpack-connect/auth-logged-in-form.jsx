@@ -85,6 +85,7 @@ class LoggedInForm extends Component {
 			(
 				this.props.calypsoStartedConnection ||
 				this.props.isSSO ||
+				this.props.isWCS ||
 				queryObject.new_user_started_connection ||
 				autoAuthorize
 			)
