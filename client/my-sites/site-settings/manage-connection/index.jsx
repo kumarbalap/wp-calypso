@@ -9,6 +9,7 @@ import page from 'page';
 /**
  * Internal dependencies
  */
+import DisconnectSite from './disconnect-site';
 import DocumentHead from 'components/data/document-head';
 import HeaderCake from 'components/header-cake';
 import Main from 'components/main';
@@ -49,6 +50,7 @@ class ManageConnection extends Component {
 				</HeaderCake>
 
 				<SiteOwnership />
+				<DisconnectSite />
 			</Main>
 		);
 	}
