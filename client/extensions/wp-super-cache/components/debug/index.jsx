@@ -97,8 +97,7 @@ class DebugTab extends Component {
 												compact
 												disabled={ isRequesting || isSaving }
 												onClick={ this.deleteLog }
-												scary
-												value="1">
+												scary>
 												{ translate( 'Delete' ) }
 											</Button>
 										</td>
